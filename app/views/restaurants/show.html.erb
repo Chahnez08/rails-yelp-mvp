@@ -1,0 +1,39 @@
+<div class="container text-center d-flex flex-column justify-content-center align-items-center">
+
+  <div class="card card-body" style="width: 18rem;">
+    <div class="card-header bg-secondary text-center">
+      <h2><%= @restaurant.name %></h2>
+    </div>
+    <h3><%= @restaurant.category %></h3>
+    <p><%= @restaurant.address %></p>
+    <p><%= @restaurant.phone_number %></p>
+  </div>
+
+    <p><strong>Reviews</strong></p>
+    <div class="list d-flex justify-content-center">
+      <ul class="list-group" style="width: 18rem;">
+        <% @restaurant.reviews.each do |review| %>
+          <li class="list-group-item"><%= review.content %></li>
+          <li class="list-group-item"><%= review.rating %></li>
+        <% end %>
+      </ul>
+      <br>
+    </div>
+
+    <div class="button d-flex justify-content-center mt-15">
+      <%= link_to "Go back", restaurants_path, class: "btn btn-primary"%>
+      <%= link_to "Delete",
+      restaurant_path(@restaurant),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger"
+    %>
+    </div>
+
+    <div class="container" style="width: 18rem;">
+  <h1>New review</h1>
+    <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content%>
+    <%= f.input :rating %>
+    <%= f.submit "Submit review", class: "btn btn-primary" %>
+  <% end %>
+</div>
+</div>

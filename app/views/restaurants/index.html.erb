@@ -1,0 +1,13 @@
+<div class="container text-center d-flex flex-column justify-content-center align-items-center">
+  <div class="card card-body" style="width: 18rem;">
+    <div class="card-header bg-secondary text-center">
+      <h2>Restaurants:</h2>
+    </div>
+  <ul class="list-unstyled">
+    <% @restaurants.each do |restaurant| %>
+      <li><%= link_to restaurant.name, restaurant_path(restaurant), class: "text-decoration-none list-group-item list-group-item-light" %></li>
+    <% end %>
+  </ul>
+  </div>
+  <%= link_to "Add new restaurant", new_restaurant_path, class: "btn btn-primary"%>
+</div>
